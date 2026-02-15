@@ -1,0 +1,26 @@
+flowchart TB
+    User["Usuário"]
+
+    subgraph Frontend
+        React["React SPA"]
+    end
+
+    subgraph Backend
+        API["FastAPI"]
+        Executor["ThreadPoolExecutor"]
+        RPA["RPA Engine (Selenium)"]
+        State["JSON Storage"]
+        LicenseAdapter["License Adapter (ctypes)"]
+    end
+
+    subgraph Native
+        DLL["License Core (C++ DLL)"]
+    end
+
+    User --> React
+    React -->|HTTP + SSE| API
+    API --> Executor
+    Executor --> RPA
+    API --> State
+    API --> LicenseAdapter
+    LicenseAdapter --> DLL
