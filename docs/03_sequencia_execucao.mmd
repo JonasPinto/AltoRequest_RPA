@@ -1,0 +1,27 @@
+sequenceDiagram
+    participant U as Usuário
+    participant R as React
+    participant API as FastAPI
+    participant L as C++ DLL
+    participant TP as ThreadPool
+    participant RPA as RPA Engine
+    participant JSON as Storage
+
+    U->>R: Abrir aplicação
+    R->>API: GET /machine-id
+    API-->>R: Retorna ID
+
+    U->>R: Enviar chave
+    R->>API: POST /validate
+    API->>L: Validar(ID, chave)
+    L-->>API: 1 ou 0
+    API-->>R: Status da licença
+
+    U->>R: Upload Excel + Iniciar
+    R->>API: POST /start
+    API->>TP: Submeter tarefa
+
+    TP->>RPA: Executar automação
+    RPA->>JSON: Atualizar histórico
+    RPA-->>API: Resultado
+    API-->>R: SSE progresso
