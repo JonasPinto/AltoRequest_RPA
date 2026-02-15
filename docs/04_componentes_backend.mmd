@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph FastAPI
+        Routes["Routes"]
+        Core["Core Config"]
+        Services["Services"]
+        Adapter["License Adapter"]
+        State["State Manager"]
+        Engine["RPA Engine"]
+        Logs["Logger"]
+    end
+
+    Routes --> Services
+    Services --> Engine
+    Services --> State
+    Services --> Adapter
+    Services --> Logs
