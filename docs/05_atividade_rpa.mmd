@@ -1,0 +1,22 @@
+flowchart TD
+    Start([Início])
+    CheckLicense{Licença válida?}
+    LoadExcel[Carregar Excel]
+    Loop{Há linhas?}
+    Fill[Preencher HTML]
+    Submit[Submeter formulário]
+    UpdateJSON[Atualizar JSON]
+    Retry{Erro?}
+    End([Fim])
+
+    Start --> CheckLicense
+    CheckLicense -- Não --> End
+    CheckLicense -- Sim --> LoadExcel
+    LoadExcel --> Loop
+    Loop -- Não --> End
+    Loop -- Sim --> Fill
+    Fill --> Submit
+    Submit --> Retry
+    Retry -- Sim (1x) --> Fill
+    Retry -- Não --> UpdateJSON
+    UpdateJSON --> Loop
