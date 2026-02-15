@@ -1,0 +1,11 @@
+flowchart TB
+    User["Usuário Windows"]
+    System["Sistema RPA Poliglota Modular"]
+    Browser["Navegador (Selenium)"]
+    HTML["HTML de Teste (Sistema Legado Simulado)"]
+    FileSystem["Sistema de Arquivos Windows"]
+
+    User --> System
+    System --> Browser
+    Browser --> HTML
+    System --> FileSystem
